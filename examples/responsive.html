@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Layout Examples</title>
+    <link rel="stylesheet" href="../styles/main.css">
+    <style>
+        /* Responsive Demo Styles */
+        .responsive-demo {
+            background: #f1f5f9;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+
+        .info-box {
+            background: #dbeafe;
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 4px;
+        }
+
+        /* Example 1: Fluid Grid */
+        .fluid-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .fluid-item {
+            background: var(--primary-color);
+            color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        /* Example 2: Responsive Typography */
+        .responsive-text h2 {
+            font-size: clamp(1.5rem, 5vw, 3rem);
+        }
+
+        .responsive-text p {
+            font-size: clamp(1rem, 2vw, 1.25rem);
+        }
+
+        /* Example 3: Mobile Menu */
+        .mobile-nav {
+            background: #1e293b;
+            padding: 1rem;
+            border-radius: 8px;
+        }
+
+        .nav-toggle {
+            display: none;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+            justify-content: center;
+        }
+
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+        }
+
+        @media (max-width: 768px) {
+            .nav-toggle {
+                display: block;
+                width: 100%;
+            }
+
+            .nav-menu {
+                display: none;
+                flex-direction: column;
+                gap: 0.5rem;
+                margin-top: 1rem;
+            }
+
+            .nav-menu.active {
+                display: flex;
+            }
+        }
+
+        /* Example 4: Responsive Cards */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+        }
+
+        .responsive-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        @media (max-width: 1024px) {
+            .card-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 640px) {
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Example 5: Responsive Images */
+        .image-container {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .responsive-img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            aspect-ratio: 16/9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        /* Example 6: Container Query (Modern) */
+        .container-query-demo {
+            container-type: inline-size;
+            border: 2px dashed var(--primary-color);
+            padding: 1rem;
+            border-radius: 8px;
+            resize: horizontal;
+            overflow: auto;
+        }
+
+        .cq-card {
+            background: var(--secondary-color);
+            color: white;
+            padding: 1rem;
+            border-radius: 8px;
+        }
+
+        @container (min-width: 400px) {
+            .cq-card {
+                display: grid;
+                grid-template-columns: 1fr 2fr;
+                gap: 1rem;
+            }
+        }
+
+        /* Example 7: Sidebar Layout */
+        .sidebar-layout {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .sidebar {
+            flex: 0 0 250px;
+            background: #f1f5f9;
+            padding: 1.5rem;
+            border-radius: 8px;
+        }
+
+        .main-area {
+            flex: 1;
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+        }
+
+        @media (max-width: 768px) {
+            .sidebar-layout {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                flex: 1;
+            }
+        }
+
+        /* Example 8: Breakpoint Indicator */
+        .breakpoint-indicator {
+            background: var(--primary-color);
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            border-radius: 8px;
+            font-weight: 600;
+        }
+
+        .breakpoint-indicator::before {
+            content: "Desktop (1024px+)";
+        }
+
+        @media (max-width: 1024px) {
+            .breakpoint-indicator {
+                background: #059669;
+            }
+            .breakpoint-indicator::before {
+                content: "Tablet (768px - 1024px)";
+            }
+        }
+
+        @media (max-width: 768px) {
+            .breakpoint-indicator {
+                background: #ea580c;
+            }
+            .breakpoint-indicator::before {
+                content: "Mobile (< 768px)";
+            }
+        }
+
+        /* Example 9: Flexible Columns */
+        .flex-columns {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .flex-column {
+            flex: 1 1 300px;
+            background: var(--primary-color);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <header class="example-header">
+        <div class="container">
+            <a href="../index.html" class="back-link">← Back to Home</a>
+            <h1>Responsive Layout Examples</h1>
+            <p>Adapting designs for different screen sizes</p>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            
+            <!-- Breakpoint Indicator -->
+            <section class="demo-section">
+                <h3>Current Breakpoint</h3>
+                <p>Resize your browser window to see the breakpoint change</p>
+                <div class="responsive-demo">
+                    <div class="breakpoint-indicator"></div>
+                </div>
+                <div class="code-block">
+@media (max-width: 1024px) { /* Tablet */ }
+@media (max-width: 768px) { /* Mobile */ }
+                </div>
+            </section>
+
+            <!-- Example 1: Fluid Grid -->
+            <section class="demo-section">
+                <h3>1. Fluid Grid Layout</h3>
+                <p>Grid automatically adjusts columns based on available space</p>
+                <div class="responsive-demo">
+                    <div class="fluid-grid">
+                        <div class="fluid-item">Column 1</div>
+                        <div class="fluid-item">Column 2</div>
+                        <div class="fluid-item">Column 3</div>
+                        <div class="fluid-item">Column 4</div>
+                    </div>
+                </div>
+                <div class="code-block">
+.fluid-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+}
+/* Automatically creates columns that are at least 250px wide */
+                </div>
+            </section>
+
+            <!-- Example 2: Responsive Typography -->
+            <section class="demo-section">
+                <h3>2. Responsive Typography</h3>
+                <p>Text size scales smoothly with viewport width using clamp()</p>
+                <div class="responsive-demo responsive-text">
+                    <h2>Responsive Heading</h2>
+                    <p>This text scales smoothly between minimum and maximum sizes based on viewport width.</p>
+                </div>
+                <div class="code-block">
+h2 {
+    font-size: clamp(1.5rem, 5vw, 3rem);
+    /* min: 1.5rem, preferred: 5vw, max: 3rem */
+}
+                </div>
+            </section>
+
+            <!-- Example 3: Mobile Navigation -->
+            <section class="demo-section">
+                <h3>3. Responsive Navigation</h3>
+                <p>Navigation adapts from horizontal to vertical on small screens</p>
+                <div class="info-box">
+                    <strong>Try it:</strong> Resize your browser to less than 768px width to see the mobile menu
+                </div>
+                <div class="responsive-demo">
+                    <nav class="mobile-nav">
+                        <button class="nav-toggle" onclick="this.nextElementSibling.classList.toggle('active')">
+                            Menu ☰
+                        </button>
+                        <ul class="nav-menu">
+                            <li><a href="#home">Home</a></li>
+                            <li><a href="#about">About</a></li>
+                            <li><a href="#services">Services</a></li>
+                            <li><a href="#contact">Contact</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="code-block">
+.nav-menu {
+    display: flex;
+    gap: 1.5rem;
+}
+
+@media (max-width: 768px) {
+    .nav-toggle { display: block; }
+    .nav-menu { 
+        display: none;
+        flex-direction: column;
+    }
+    .nav-menu.active { display: flex; }
+}
+                </div>
+            </section>
+
+            <!-- Example 4: Responsive Card Grid -->
+            <section class="demo-section">
+                <h3>4. Responsive Card Grid</h3>
+                <p>Cards stack differently at various breakpoints: 3 → 2 → 1 columns</p>
+                <div class="responsive-demo">
+                    <div class="card-grid">
+                        <div class="responsive-card">
+                            <h4>Card 1</h4>
+                            <p>Content adapts to screen size</p>
+                        </div>
+                        <div class="responsive-card">
+                            <h4>Card 2</h4>
+                            <p>3 columns on desktop</p>
+                        </div>
+                        <div class="responsive-card">
+                            <h4>Card 3</h4>
+                            <p>2 columns on tablet</p>
+                        </div>
+                        <div class="responsive-card">
+                            <h4>Card 4</h4>
+                            <p>1 column on mobile</p>
+                        </div>
+                        <div class="responsive-card">
+                            <h4>Card 5</h4>
+                            <p>Resize to see changes</p>
+                        </div>
+                        <div class="responsive-card">
+                            <h4>Card 6</h4>
+                            <p>Fully responsive layout</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="code-block">
+.card-grid {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+@media (max-width: 1024px) {
+    .card-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 640px) {
+    .card-grid { grid-template-columns: 1fr; }
+}
+                </div>
+            </section>
+
+            <!-- Example 5: Responsive Images -->
+            <section class="demo-section">
+                <h3>5. Responsive Images</h3>
+                <p>Images scale proportionally with their container</p>
+                <div class="responsive-demo">
+                    <div class="image-container">
+                        <div class="responsive-img">Responsive Image</div>
+                    </div>
+                </div>
+                <div class="code-block">
+img {
+    width: 100%;
+    height: auto;
+    max-width: 600px;
+}
+
+/* Or with aspect ratio */
+.image {
+    aspect-ratio: 16/9;
+}
+                </div>
+            </section>
+
+            <!-- Example 6: Container Queries -->
+            <section class="demo-section">
+                <h3>6. Container Queries (Modern CSS)</h3>
+                <p>Components respond to their container size, not viewport</p>
+                <div class="info-box">
+                    <strong>Try it:</strong> Drag the bottom-right corner to resize the container
+                </div>
+                <div class="responsive-demo">
+                    <div class="container-query-demo">
+                        <div class="cq-card">
+                            <div>Image</div>
+                            <div>
+                                <h4>Container Query Demo</h4>
+                                <p>Layout changes based on container width, not viewport</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="code-block">
+.container {
+    container-type: inline-size;
+}
+
+@container (min-width: 400px) {
+    .cq-card {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+    }
+}
+                </div>
+            </section>
+
+            <!-- Example 7: Responsive Sidebar -->
+            <section class="demo-section">
+                <h3>7. Responsive Sidebar Layout</h3>
+                <p>Sidebar moves to top on smaller screens</p>
+                <div class="responsive-demo">
+                    <div class="sidebar-layout">
+                        <aside class="sidebar">
+                            <h4>Sidebar</h4>
+                            <ul>
+                                <li>Navigation Item 1</li>
+                                <li>Navigation Item 2</li>
+                                <li>Navigation Item 3</li>
+                            </ul>
+                        </aside>
+                        <div class="main-area">
+                            <h4>Main Content</h4>
+                            <p>On desktop, sidebar is on the left. On mobile, it moves to the top.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="code-block">
+.sidebar-layout {
+    display: flex;
+    gap: 2rem;
+}
+
+.sidebar { flex: 0 0 250px; }
+.main-area { flex: 1; }
+
+@media (max-width: 768px) {
+    .sidebar-layout {
+        flex-direction: column;
+    }
+}
+                </div>
+            </section>
+
+            <!-- Example 8: Flexible Columns -->
+            <section class="demo-section">
+                <h3>8. Flexible Column Layout</h3>
+                <p>Columns wrap automatically using flexbox</p>
+                <div class="responsive-demo">
+                    <div class="flex-columns">
+                        <div class="flex-column">
+                            <h4>Column 1</h4>
+                            <p>Flexible width with minimum 300px</p>
+                        </div>
+                        <div class="flex-column">
+                            <h4>Column 2</h4>
+                            <p>Wraps to new line when needed</p>
+                        </div>
+                        <div class="flex-column">
+                            <h4>Column 3</h4>
+                            <p>No media queries required</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="code-block">
+.flex-columns {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.flex-column {
+    flex: 1 1 300px;
+    /* grow, shrink, basis (min-width) */
+}
+                </div>
+            </section>
+
+            <!-- Best Practices -->
+            <section class="demo-section">
+                <h3>Responsive Design Best Practices</h3>
+                <div class="info-box">
+                    <h4>Key Principles:</h4>
+                    <ul>
+                        <li><strong>Mobile-First:</strong> Start with mobile styles, add complexity for larger screens</li>
+                        <li><strong>Flexible Units:</strong> Use relative units (%, rem, em, vw, vh) instead of fixed pixels</li>
+                        <li><strong>Breakpoints:</strong> Common breakpoints: 640px (mobile), 768px (tablet), 1024px (desktop), 1280px (large)</li>
+                        <li><strong>Touch Targets:</strong> Ensure buttons and links are at least 44x44px on mobile</li>
+                        <li><strong>Images:</strong> Always use max-width: 100% and height: auto for responsive images</li>
+                        <li><strong>Testing:</strong> Test on real devices, not just browser resize</li>
+                    </ul>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2025 Web Layout Investigation Project</p>
+        </div>
+    </footer>
+</body>
+</html>

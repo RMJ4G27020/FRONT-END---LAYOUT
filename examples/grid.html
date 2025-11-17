@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Grid Layout Examples</title>
+    <link rel="stylesheet" href="../styles/main.css">
+    <style>
+        /* Grid Demo Styles */
+        .grid-demo {
+            background: #f1f5f9;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+
+        .grid-container {
+            display: grid;
+            background: #e2e8f0;
+            padding: 1rem;
+            border-radius: 4px;
+            gap: 1rem;
+        }
+
+        .grid-item {
+            background: var(--primary-color);
+            color: white;
+            padding: 1rem;
+            border-radius: 4px;
+            text-align: center;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Example 1: Basic Grid */
+        .grid-basic {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        /* Example 2: Different Column Sizes */
+        .grid-columns {
+            grid-template-columns: 1fr 2fr 1fr;
+        }
+
+        /* Example 3: Auto-fill */
+        .grid-auto-fill {
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        }
+
+        /* Example 4: Grid Rows */
+        .grid-rows {
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: 80px 120px 80px;
+        }
+
+        /* Example 5: Grid Areas */
+        .grid-areas {
+            grid-template-columns: 1fr 2fr 1fr;
+            grid-template-rows: auto auto auto;
+            grid-template-areas: 
+                "header header header"
+                "sidebar main aside"
+                "footer footer footer";
+        }
+
+        .grid-header { grid-area: header; background: #059669; }
+        .grid-sidebar { grid-area: sidebar; background: #dc2626; }
+        .grid-main { grid-area: main; background: var(--primary-color); }
+        .grid-aside { grid-area: aside; background: #7c3aed; }
+        .grid-footer { grid-area: footer; background: #ea580c; }
+
+        /* Example 6: Spanning Cells */
+        .grid-span {
+            grid-template-columns: repeat(4, 1fr);
+        }
+
+        .span-2 { grid-column: span 2; background: var(--secondary-color); }
+        .span-3 { grid-column: span 3; background: #059669; }
+
+        /* Example 7: Explicit Placement */
+        .grid-placement {
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(3, 80px);
+        }
+
+        .place-1-3 { 
+            grid-column: 1 / 3; 
+            grid-row: 1;
+            background: #dc2626;
+        }
+
+        .place-3 { 
+            grid-column: 3; 
+            grid-row: 1 / 3;
+            background: #059669;
+        }
+
+        /* Example 8: Gap */
+        .grid-gap-sm { gap: 0.5rem; }
+        .grid-gap-lg { gap: 2rem; }
+
+        /* Example 9: Dashboard Layout */
+        .dashboard-grid {
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: auto;
+            gap: 1rem;
+        }
+
+        .dashboard-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .dashboard-item h4 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .dashboard-large { grid-column: span 2; }
+        .dashboard-tall { grid-row: span 2; }
+
+        /* Example 10: Photo Gallery */
+        .gallery-grid {
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .gallery-item {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            aspect-ratio: 1;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 1.5rem;
+        }
+
+        .gallery-wide { grid-column: span 2; }
+        .gallery-tall { grid-row: span 2; }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .grid-areas {
+                grid-template-columns: 1fr;
+                grid-template-areas: 
+                    "header"
+                    "main"
+                    "sidebar"
+                    "aside"
+                    "footer";
+            }
+
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .dashboard-large,
+            .dashboard-tall {
+                grid-column: span 1;
+                grid-row: span 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="example-header">
+        <div class="container">
+            <a href="../index.html" class="back-link">← Back to Home</a>
+            <h1>CSS Grid Layout Examples</h1>
+            <p>Two-dimensional layout system for complex designs</p>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            
+            <!-- Example 1: Basic Grid -->
+            <section class="demo-section">
+                <h3>1. Basic Grid Layout</h3>
+                <p>Three equal columns using fractional units (fr)</p>
+                <div class="grid-demo">
+                    <div class="grid-container grid-basic">
+                        <div class="grid-item">1</div>
+                        <div class="grid-item">2</div>
+                        <div class="grid-item">3</div>
+                        <div class="grid-item">4</div>
+                        <div class="grid-item">5</div>
+                        <div class="grid-item">6</div>
+                    </div>
+                </div>
+                <div class="code-block">
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+}
+                </div>
+            </section>
+
+            <!-- Example 2: Different Column Sizes -->
+            <section class="demo-section">
+                <h3>2. Variable Column Widths</h3>
+                <p>Middle column takes twice the space</p>
+                <div class="grid-demo">
+                    <div class="grid-container grid-columns">
+                        <div class="grid-item">1fr</div>
+                        <div class="grid-item">2fr</div>
+                        <div class="grid-item">1fr</div>
+                    </div>
+                </div>
+                <div class="code-block">
+.grid-container {
+    grid-template-columns: 1fr 2fr 1fr;
+}
+                </div>
+            </section>
+
+            <!-- Example 3: Auto-fill -->
+            <section class="demo-section">
+                <h3>3. Responsive Auto-fill</h3>
+                <p>Automatically creates columns based on available space</p>
+                <div class="grid-demo">
+                    <div class="grid-container grid-auto-fill">
+                        <div class="grid-item">1</div>
+                        <div class="grid-item">2</div>
+                        <div class="grid-item">3</div>
+                        <div class="grid-item">4</div>
+                        <div class="grid-item">5</div>
+                        <div class="grid-item">6</div>
+                    </div>
+                </div>
+                <div class="code-block">
+.grid-container {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+}
+/* Creates as many columns as fit, minimum 150px each */
+                </div>
+            </section>
+
+            <!-- Example 4: Grid Rows -->
+            <section class="demo-section">
+                <h3>4. Explicit Row Heights</h3>
+                <p>Define specific heights for each row</p>
+                <div class="grid-demo">
+                    <div class="grid-container grid-rows">
+                        <div class="grid-item">80px</div>
+                        <div class="grid-item">80px</div>
+                        <div class="grid-item">80px</div>
+                        <div class="grid-item">120px</div>
+                        <div class="grid-item">120px</div>
+                        <div class="grid-item">120px</div>
+                        <div class="grid-item">80px</div>
+                        <div class="grid-item">80px</div>
+                        <div class="grid-item">80px</div>
+                    </div>
+                </div>
+                <div class="code-block">
+.grid-container {
+    grid-template-rows: 80px 120px 80px;
+}
+                </div>
+            </section>
+
+            <!-- Example 5: Grid Areas -->
+            <section class="demo-section">
+                <h3>5. Grid Template Areas</h3>
+                <p>Named areas for intuitive layout definition</p>
+                <div class="grid-demo">
+                    <div class="grid-container grid-areas">
+                        <div class="grid-item grid-header">Header</div>
+                        <div class="grid-item grid-sidebar">Sidebar</div>
+                        <div class="grid-item grid-main">Main Content</div>
+                        <div class="grid-item grid-aside">Aside</div>
+                        <div class="grid-item grid-footer">Footer</div>
+                    </div>
+                </div>
+                <div class="code-block">
+.grid-container {
+    grid-template-areas: 
+        "header header header"
+        "sidebar main aside"
+        "footer footer footer";
+}
+
+.grid-header { grid-area: header; }
+.grid-sidebar { grid-area: sidebar; }
+/* ... etc */
+                </div>
+            </section>
+
+            <!-- Example 6: Spanning Cells -->
+            <section class="demo-section">
+                <h3>6. Spanning Multiple Columns</h3>
+                <p>Items can span across multiple columns</p>
+                <div class="grid-demo">
+                    <div class="grid-container grid-span">
+                        <div class="grid-item">1</div>
+                        <div class="grid-item span-2">Span 2</div>
+                        <div class="grid-item">2</div>
+                        <div class="grid-item span-3">Span 3</div>
+                        <div class="grid-item">3</div>
+                    </div>
+                </div>
+                <div class="code-block">
+.grid-item {
+    grid-column: span 2; /* Spans 2 columns */
+}
+                </div>
+            </section>
+
+            <!-- Example 7: Explicit Placement -->
+            <section class="demo-section">
+                <h3>7. Explicit Item Placement</h3>
+                <p>Place items at specific grid lines</p>
+                <div class="grid-demo">
+                    <div class="grid-container grid-placement">
+                        <div class="grid-item place-1-3">Columns 1-3, Row 1</div>
+                        <div class="grid-item place-3">Column 3, Rows 1-3</div>
+                        <div class="grid-item">Auto</div>
+                        <div class="grid-item">Auto</div>
+                        <div class="grid-item">Auto</div>
+                        <div class="grid-item">Auto</div>
+                        <div class="grid-item">Auto</div>
+                    </div>
+                </div>
+                <div class="code-block">
+.item-1 {
+    grid-column: 1 / 3; /* From line 1 to line 3 */
+    grid-row: 1;
+}
+
+.item-2 {
+    grid-column: 3;
+    grid-row: 1 / 3; /* Span rows 1 to 3 */
+}
+                </div>
+            </section>
+
+            <!-- Example 8: Gap Sizes -->
+            <section class="demo-section">
+                <h3>8. Grid Gap</h3>
+                
+                <h4>Small Gap (0.5rem)</h4>
+                <div class="grid-demo">
+                    <div class="grid-container grid-basic grid-gap-sm">
+                        <div class="grid-item">1</div>
+                        <div class="grid-item">2</div>
+                        <div class="grid-item">3</div>
+                    </div>
+                </div>
+
+                <h4>Large Gap (2rem)</h4>
+                <div class="grid-demo">
+                    <div class="grid-container grid-basic grid-gap-lg">
+                        <div class="grid-item">1</div>
+                        <div class="grid-item">2</div>
+                        <div class="grid-item">3</div>
+                    </div>
+                </div>
+
+                <div class="code-block">
+.grid-container {
+    gap: 1rem; /* Shorthand for row-gap and column-gap */
+}
+                </div>
+            </section>
+
+            <!-- Example 9: Dashboard Layout -->
+            <section class="demo-section">
+                <h3>9. Practical Example: Dashboard Layout</h3>
+                <p>Complex dashboard with varying card sizes</p>
+                <div class="grid-demo">
+                    <div class="dashboard-grid">
+                        <div class="dashboard-item dashboard-large">
+                            <h4>Analytics</h4>
+                            <p>Wide card spanning 2 columns</p>
+                        </div>
+                        <div class="dashboard-item">
+                            <h4>Users</h4>
+                            <p>Standard card</p>
+                        </div>
+                        <div class="dashboard-item">
+                            <h4>Revenue</h4>
+                            <p>Standard card</p>
+                        </div>
+                        <div class="dashboard-item dashboard-tall">
+                            <h4>Activity</h4>
+                            <p>Tall card spanning 2 rows</p>
+                        </div>
+                        <div class="dashboard-item">
+                            <h4>Tasks</h4>
+                            <p>Standard card</p>
+                        </div>
+                        <div class="dashboard-item">
+                            <h4>Messages</h4>
+                            <p>Standard card</p>
+                        </div>
+                        <div class="dashboard-item">
+                            <h4>Reports</h4>
+                            <p>Standard card</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="code-block">
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+}
+
+.dashboard-large { grid-column: span 2; }
+.dashboard-tall { grid-row: span 2; }
+                </div>
+            </section>
+
+            <!-- Example 10: Photo Gallery -->
+            <section class="demo-section">
+                <h3>10. Practical Example: Photo Gallery</h3>
+                <p>Responsive gallery with varying image sizes</p>
+                <div class="grid-demo">
+                    <div class="gallery-grid">
+                        <div class="gallery-item gallery-wide">1</div>
+                        <div class="gallery-item">2</div>
+                        <div class="gallery-item">3</div>
+                        <div class="gallery-item gallery-tall">4</div>
+                        <div class="gallery-item">5</div>
+                        <div class="gallery-item">6</div>
+                        <div class="gallery-item">7</div>
+                        <div class="gallery-item">8</div>
+                    </div>
+                </div>
+                <div class="code-block">
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.gallery-wide { grid-column: span 2; }
+.gallery-tall { grid-row: span 2; }
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2025 Web Layout Investigation Project</p>
+        </div>
+    </footer>
+</body>
+</html>

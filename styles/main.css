@@ -1,0 +1,311 @@
+/* ===================================
+   CSS Reset and Base Styles
+   =================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* Color Palette */
+    --primary-color: #2563eb;
+    --primary-dark: #1e40af;
+    --secondary-color: #8b5cf6;
+    --background: #f8fafc;
+    --surface: #ffffff;
+    --text-primary: #1e293b;
+    --text-secondary: #64748b;
+    --border-color: #e2e8f0;
+    --shadow: rgba(0, 0, 0, 0.1);
+    
+    /* Spacing */
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 1.5rem;
+    --spacing-lg: 2rem;
+    --spacing-xl: 3rem;
+    
+    /* Typography */
+    --font-primary: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+    --font-mono: 'Courier New', Courier, monospace;
+    
+    /* Border Radius */
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    
+    /* Transitions */
+    --transition-fast: 150ms ease;
+    --transition-base: 250ms ease;
+}
+
+body {
+    font-family: var(--font-primary);
+    line-height: 1.6;
+    color: var(--text-primary);
+    background-color: var(--background);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ===================================
+   Typography
+   =================================== */
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: var(--spacing-sm);
+}
+
+h1 { font-size: 2.5rem; }
+h2 { font-size: 2rem; }
+h3 { font-size: 1.5rem; }
+h4 { font-size: 1.25rem; }
+
+p {
+    margin-bottom: var(--spacing-sm);
+}
+
+/* ===================================
+   Layout Utilities
+   =================================== */
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-md);
+    width: 100%;
+}
+
+/* ===================================
+   Header Styles
+   =================================== */
+
+.site-header {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    color: white;
+    padding: var(--spacing-xl) 0;
+    box-shadow: 0 4px 6px var(--shadow);
+}
+
+.site-header h1 {
+    margin-bottom: var(--spacing-xs);
+}
+
+.subtitle {
+    font-size: 1.1rem;
+    opacity: 0.95;
+    margin-bottom: 0;
+}
+
+/* ===================================
+   Main Content
+   =================================== */
+
+.main-content {
+    flex: 1;
+    padding: var(--spacing-xl) 0;
+}
+
+/* ===================================
+   Introduction Section
+   =================================== */
+
+.intro {
+    background: var(--surface);
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-lg);
+    margin-bottom: var(--spacing-xl);
+    box-shadow: 0 2px 4px var(--shadow);
+}
+
+.intro h2 {
+    color: var(--primary-color);
+}
+
+/* ===================================
+   Examples Grid
+   =================================== */
+
+.examples-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-xl);
+}
+
+/* ===================================
+   Card Component
+   =================================== */
+
+.card {
+    background: var(--surface);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg);
+    box-shadow: 0 2px 8px var(--shadow);
+    transition: transform var(--transition-base), box-shadow var(--transition-base);
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--border-color);
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px var(--shadow);
+}
+
+.card-icon {
+    font-size: 3rem;
+    margin-bottom: var(--spacing-sm);
+}
+
+.card h3 {
+    color: var(--primary-color);
+    margin-bottom: var(--spacing-sm);
+}
+
+.card p {
+    color: var(--text-secondary);
+    flex: 1;
+    margin-bottom: var(--spacing-md);
+}
+
+/* ===================================
+   Button Styles
+   =================================== */
+
+.btn {
+    display: inline-block;
+    padding: var(--spacing-xs) var(--spacing-md);
+    background-color: var(--primary-color);
+    color: white;
+    text-decoration: none;
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    transition: background-color var(--transition-fast);
+    text-align: center;
+}
+
+.btn:hover {
+    background-color: var(--primary-dark);
+}
+
+.btn-secondary {
+    background-color: var(--secondary-color);
+}
+
+.btn-secondary:hover {
+    background-color: #7c3aed;
+}
+
+/* ===================================
+   Documentation Section
+   =================================== */
+
+.documentation {
+    background: var(--surface);
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-lg);
+    text-align: center;
+    box-shadow: 0 2px 4px var(--shadow);
+}
+
+.documentation h2 {
+    color: var(--primary-color);
+}
+
+/* ===================================
+   Footer Styles
+   =================================== */
+
+.site-footer {
+    background-color: var(--text-primary);
+    color: white;
+    padding: var(--spacing-lg) 0;
+    text-align: center;
+    margin-top: auto;
+}
+
+.site-footer p {
+    margin-bottom: var(--spacing-xs);
+    opacity: 0.8;
+}
+
+/* ===================================
+   Example Page Styles
+   =================================== */
+
+.example-header {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    color: white;
+    padding: var(--spacing-lg) 0;
+    margin-bottom: var(--spacing-xl);
+}
+
+.back-link {
+    display: inline-block;
+    color: white;
+    text-decoration: none;
+    margin-bottom: var(--spacing-sm);
+    font-weight: 600;
+}
+
+.back-link:hover {
+    text-decoration: underline;
+}
+
+.demo-section {
+    background: var(--surface);
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-lg);
+    margin-bottom: var(--spacing-lg);
+    box-shadow: 0 2px 4px var(--shadow);
+}
+
+.demo-section h3 {
+    color: var(--primary-color);
+    margin-bottom: var(--spacing-md);
+}
+
+.code-block {
+    background: #1e293b;
+    color: #e2e8f0;
+    padding: var(--spacing-md);
+    border-radius: var(--radius-md);
+    overflow-x: auto;
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    margin: var(--spacing-sm) 0;
+}
+
+/* ===================================
+   Responsive Design
+   =================================== */
+
+@media (max-width: 768px) {
+    h1 { font-size: 2rem; }
+    h2 { font-size: 1.5rem; }
+    h3 { font-size: 1.25rem; }
+    
+    .examples-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .site-header,
+    .main-content {
+        padding: var(--spacing-lg) 0;
+    }
+}
+
+@media (max-width: 480px) {
+    :root {
+        --spacing-xl: 2rem;
+        --spacing-lg: 1.5rem;
+    }
+    
+    h1 { font-size: 1.75rem; }
+}
