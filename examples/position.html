@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Position Examples</title>
+    <link rel="stylesheet" href="../styles/main.css">
+    <style>
+        /* Position Demo Styles */
+        .position-demo {
+            background: #f1f5f9;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            position: relative;
+            min-height: 300px;
+        }
+
+        .demo-box {
+            background: var(--primary-color);
+            color: white;
+            padding: 1rem;
+            border-radius: 4px;
+            font-weight: 600;
+            width: fit-content;
+        }
+
+        /* Example 1: Static (default) */
+        .static-box {
+            position: static;
+            background: #64748b;
+        }
+
+        /* Example 2: Relative */
+        .relative-demo {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+
+        .relative-container {
+            flex: 1;
+            background: #e2e8f0;
+            padding: 2rem;
+            border-radius: 8px;
+            min-height: 200px;
+        }
+
+        .relative-box {
+            position: relative;
+            top: 30px;
+            left: 40px;
+            background: #059669;
+        }
+
+        .normal-box {
+            background: #64748b;
+            color: white;
+            padding: 1rem;
+            border-radius: 4px;
+            margin-top: 1rem;
+        }
+
+        /* Example 3: Absolute */
+        .absolute-demo {
+            position: relative;
+            background: #e2e8f0;
+            padding: 2rem;
+            border-radius: 8px;
+            min-height: 300px;
+        }
+
+        .absolute-box {
+            position: absolute;
+        }
+
+        .absolute-top-left {
+            top: 10px;
+            left: 10px;
+            background: #dc2626;
+        }
+
+        .absolute-top-right {
+            top: 10px;
+            right: 10px;
+            background: #059669;
+        }
+
+        .absolute-bottom-left {
+            bottom: 10px;
+            left: 10px;
+            background: #7c3aed;
+        }
+
+        .absolute-bottom-right {
+            bottom: 10px;
+            right: 10px;
+            background: #ea580c;
+        }
+
+        .absolute-center {
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: var(--primary-color);
+        }
+
+        /* Example 4: Fixed */
+        .fixed-demo {
+            min-height: 400px;
+            overflow: auto;
+            background: #e2e8f0;
+            border-radius: 8px;
+            padding: 2rem;
+        }
+
+        .scroll-content {
+            height: 800px;
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+        }
+
+        .fixed-button {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .fixed-button:hover {
+            background: var(--primary-dark);
+            transform: scale(1.1);
+        }
+
+        /* Example 5: Sticky */
+        .sticky-demo {
+            background: #e2e8f0;
+            border-radius: 8px;
+            overflow: auto;
+            max-height: 400px;
+        }
+
+        .sticky-header {
+            position: sticky;
+            top: 0;
+            background: var(--primary-color);
+            color: white;
+            padding: 1rem;
+            font-weight: 600;
+            z-index: 10;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .sticky-content {
+            padding: 1rem;
+            background: white;
+        }
+
+        .sticky-section {
+            margin-bottom: 2rem;
+        }
+
+        /* Example 6: Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-content {
+            position: relative;
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 4px;
+        }
+
+        .modal-close:hover {
+            background: #f1f5f9;
+        }
+
+        .open-modal-btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        /* Example 7: Tooltip */
+        .tooltip-container {
+            position: relative;
+            display: inline-block;
+        }
+
+        .tooltip-trigger {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .tooltip {
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #1e293b;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-size: 0.875rem;
+            white-space: nowrap;
+            margin-bottom: 8px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .tooltip::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 6px solid transparent;
+            border-top-color: #1e293b;
+        }
+
+        .tooltip-container:hover .tooltip {
+            opacity: 1;
+        }
+
+        /* Example 8: Z-index */
+        .zindex-demo {
+            position: relative;
+            height: 300px;
+            background: #e2e8f0;
+            border-radius: 8px;
+            padding: 2rem;
+        }
+
+        .layer {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            border-radius: 8px;
+            border: 3px solid white;
+        }
+
+        .layer-1 {
+            background: #ef4444;
+            top: 50px;
+            left: 50px;
+            z-index: 1;
+        }
+
+        .layer-2 {
+            background: #3b82f6;
+            top: 80px;
+            left: 100px;
+            z-index: 2;
+        }
+
+        .layer-3 {
+            background: #10b981;
+            top: 110px;
+            left: 150px;
+            z-index: 3;
+        }
+    </style>
+</head>
+<body>
+    <header class="example-header">
+        <div class="container">
+            <a href="../index.html" class="back-link">← Back to Home</a>
+            <h1>CSS Position Examples</h1>
+            <p>Understanding static, relative, absolute, fixed, and sticky positioning</p>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            
+            <!-- Introduction -->
+            <section class="demo-section">
+                <h3>Position Property Overview</h3>
+                <p>
+                    The CSS <code>position</code> property determines how an element is positioned 
+                    in the document. Each position type behaves differently and is useful for 
+                    specific layout scenarios.
+                </p>
+                <ul>
+                    <li><strong>static:</strong> Default positioning, follows normal document flow</li>
+                    <li><strong>relative:</strong> Positioned relative to its normal position</li>
+                    <li><strong>absolute:</strong> Positioned relative to nearest positioned ancestor</li>
+                    <li><strong>fixed:</strong> Positioned relative to the viewport</li>
+                    <li><strong>sticky:</strong> Toggles between relative and fixed</li>
+                </ul>
+            </section>
+
+            <!-- Example 1: Static -->
+            <section class="demo-section">
+                <h3>1. Static Positioning (Default)</h3>
+                <p>Elements appear in normal document flow. Top, right, bottom, left have no effect.</p>
+                <div class="position-demo">
+                    <div class="demo-box static-box">Static Box (Default)</div>
+                    <p style="margin-top: 1rem;">This is regular content that flows normally.</p>
+                </div>
+                <div class="code-block">
+.static-box {
+    position: static; /* Default, usually not specified */
+}
+                </div>
+            </section>
+
+            <!-- Example 2: Relative -->
+            <section class="demo-section">
+                <h3>2. Relative Positioning</h3>
+                <p>Positioned relative to where it would normally be. Original space is preserved.</p>
+                <div class="relative-demo">
+                    <div class="relative-container">
+                        <h4>Without Relative</h4>
+                        <div class="demo-box">Normal Position</div>
+                        <div class="normal-box">Next element</div>
+                    </div>
+                    <div class="relative-container">
+                        <h4>With Relative</h4>
+                        <div class="demo-box relative-box">Relative (moved 30px down, 40px right)</div>
+                        <div class="normal-box">Next element (notice the gap)</div>
+                    </div>
+                </div>
+                <div class="code-block">
+.relative-box {
+    position: relative;
+    top: 30px;  /* Moves down */
+    left: 40px; /* Moves right */
+}
+/* Original space in document flow is preserved */
+                </div>
+            </section>
+
+            <!-- Example 3: Absolute -->
+            <section class="demo-section">
+                <h3>3. Absolute Positioning</h3>
+                <p>Removed from normal flow, positioned relative to nearest positioned ancestor.</p>
+                <div class="absolute-demo">
+                    <div class="demo-box absolute-box absolute-top-left">Top Left</div>
+                    <div class="demo-box absolute-box absolute-top-right">Top Right</div>
+                    <div class="demo-box absolute-box absolute-center">Centered</div>
+                    <div class="demo-box absolute-box absolute-bottom-left">Bottom Left</div>
+                    <div class="demo-box absolute-box absolute-bottom-right">Bottom Right</div>
+                </div>
+                <div class="code-block">
+.container {
+    position: relative; /* Creates positioning context */
+}
+
+.absolute-box {
+    position: absolute;
+}
+
+.top-left { top: 10px; left: 10px; }
+.top-right { top: 10px; right: 10px; }
+.centered {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+                </div>
+            </section>
+
+            <!-- Example 4: Fixed -->
+            <section class="demo-section">
+                <h3>4. Fixed Positioning</h3>
+                <p>Positioned relative to the viewport. Stays in place when scrolling.</p>
+                <div style="background: #dbeafe; border-left: 4px solid var(--primary-color); padding: 1rem; margin: 1rem 0; border-radius: 4px;">
+                    <strong>Note:</strong> Look at the bottom-right corner of your screen. There's a fixed 
+                    "↑" button that stays visible as you scroll.
+                </div>
+                <div class="code-block">
+.fixed-button {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 1000;
+}
+/* Stays in the same position even when scrolling */
+                </div>
+            </section>
+
+            <!-- Example 5: Sticky -->
+            <section class="demo-section">
+                <h3>5. Sticky Positioning</h3>
+                <p>Acts like relative until scrolling reaches threshold, then becomes fixed.</p>
+                <div class="sticky-demo">
+                    <div class="sticky-header">Sticky Header (Scroll down to see effect)</div>
+                    <div class="sticky-content">
+                        <div class="sticky-section">
+                            <h4>Section 1</h4>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                            <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                        </div>
+                        <div class="sticky-section">
+                            <h4>Section 2</h4>
+                            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+                            <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                        </div>
+                        <div class="sticky-section">
+                            <h4>Section 3</h4>
+                            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
+                            <p>Totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+                        </div>
+                        <div class="sticky-section">
+                            <h4>Section 4</h4>
+                            <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit.</p>
+                            <p>Sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="code-block">
+.sticky-header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+/* Sticks to top when scrolling past it */
+                </div>
+            </section>
+
+            <!-- Example 6: Modal Overlay -->
+            <section class="demo-section">
+                <h3>6. Practical Example: Modal</h3>
+                <p>Using fixed positioning for overlays and modals</p>
+                <button class="open-modal-btn" onclick="document.getElementById('modal').classList.add('active')">
+                    Open Modal
+                </button>
+                
+                <div id="modal" class="modal-overlay" onclick="if(event.target === this) this.classList.remove('active')">
+                    <div class="modal-content">
+                        <button class="modal-close" onclick="document.getElementById('modal').classList.remove('active')">×</button>
+                        <h3>Modal Dialog</h3>
+                        <p>This modal uses fixed positioning to overlay the entire viewport.</p>
+                        <p>The overlay background is also fixed to cover the whole screen.</p>
+                        <button class="btn" onclick="document.getElementById('modal').classList.remove('active')">Close</button>
+                    </div>
+                </div>
+                
+                <div class="code-block">
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    position: relative;
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+}
+                </div>
+            </section>
+
+            <!-- Example 7: Tooltip -->
+            <section class="demo-section">
+                <h3>7. Practical Example: Tooltip</h3>
+                <p>Using absolute positioning for tooltips</p>
+                <div class="tooltip-container">
+                    <button class="tooltip-trigger">Hover over me</button>
+                    <div class="tooltip">This is a tooltip!</div>
+                </div>
+                
+                <div class="code-block">
+.tooltip-container {
+    position: relative;
+}
+
+.tooltip {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+}
+
+.tooltip-container:hover .tooltip {
+    opacity: 1;
+}
+                </div>
+            </section>
+
+            <!-- Example 8: Z-index -->
+            <section class="demo-section">
+                <h3>8. Z-Index (Stacking Order)</h3>
+                <p>Control which elements appear in front when they overlap</p>
+                <div class="zindex-demo">
+                    <div class="layer layer-1">Layer 1<br>z-index: 1</div>
+                    <div class="layer layer-2">Layer 2<br>z-index: 2</div>
+                    <div class="layer layer-3">Layer 3<br>z-index: 3</div>
+                </div>
+                <div class="code-block">
+.layer-1 {
+    position: absolute;
+    z-index: 1; /* Behind */
+}
+
+.layer-2 {
+    position: absolute;
+    z-index: 2; /* Middle */
+}
+
+.layer-3 {
+    position: absolute;
+    z-index: 3; /* Front */
+}
+/* Higher z-index appears on top */
+                </div>
+            </section>
+
+            <!-- Best Practices -->
+            <section class="demo-section">
+                <h3>Position Best Practices</h3>
+                <div style="background: #dbeafe; border-left: 4px solid var(--primary-color); padding: 1rem; margin: 1rem 0; border-radius: 4px;">
+                    <h4>Tips:</h4>
+                    <ul>
+                        <li><strong>Minimize absolute positioning:</strong> Use Flexbox or Grid for most layouts</li>
+                        <li><strong>Positioning context:</strong> Remember absolute positions relative to nearest positioned ancestor</li>
+                        <li><strong>Z-index management:</strong> Use consistent z-index scale (e.g., 10, 20, 30)</li>
+                        <li><strong>Fixed elements:</strong> Ensure they don't block important content on small screens</li>
+                        <li><strong>Sticky support:</strong> Provide fallback for older browsers</li>
+                        <li><strong>Accessibility:</strong> Ensure positioned elements maintain logical tab order</li>
+                        <li><strong>Performance:</strong> Fixed and sticky can cause repaint issues if overused</li>
+                    </ul>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Fixed button for scroll to top -->
+    <button class="fixed-button" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" title="Scroll to top">
+        ↑
+    </button>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2025 Web Layout Investigation Project</p>
+        </div>
+    </footer>
+</body>
+</html>

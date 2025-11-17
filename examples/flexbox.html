@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flexbox Layout Examples</title>
+    <link rel="stylesheet" href="../styles/main.css">
+    <style>
+        /* Flexbox Demo Styles */
+        .flex-demo {
+            background: #f1f5f9;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+
+        .flex-container {
+            display: flex;
+            background: #e2e8f0;
+            padding: 1rem;
+            border-radius: 4px;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .flex-item {
+            background: var(--primary-color);
+            color: white;
+            padding: 1rem;
+            border-radius: 4px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        /* Example 1: Basic Row */
+        .flex-row {
+            flex-direction: row;
+        }
+
+        /* Example 2: Column Direction */
+        .flex-column {
+            flex-direction: column;
+        }
+
+        /* Example 3: Justify Content */
+        .justify-start { justify-content: flex-start; }
+        .justify-center { justify-content: center; }
+        .justify-end { justify-content: flex-end; }
+        .justify-between { justify-content: space-between; }
+        .justify-around { justify-content: space-around; }
+        .justify-evenly { justify-content: space-evenly; }
+
+        /* Example 4: Align Items */
+        .align-stretch { align-items: stretch; min-height: 150px; }
+        .align-center { align-items: center; min-height: 150px; }
+        .align-start { align-items: flex-start; min-height: 150px; }
+        .align-end { align-items: flex-end; min-height: 150px; }
+
+        .flex-item-tall { min-height: 80px; }
+        .flex-item-short { min-height: 40px; }
+
+        /* Example 5: Flex Grow */
+        .flex-grow-1 { flex-grow: 1; }
+        .flex-grow-2 { flex-grow: 2; }
+        .flex-grow-0 { flex-grow: 0; }
+
+        /* Example 6: Flex Wrap */
+        .flex-wrap {
+            flex-wrap: wrap;
+        }
+
+        .flex-wrap .flex-item {
+            width: 150px;
+        }
+
+        /* Example 7: Navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #1e293b;
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+        }
+
+        .navbar-brand {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .navbar-menu {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+        }
+
+        .navbar-menu a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .navbar-menu a:hover {
+            text-decoration: underline;
+        }
+
+        /* Example 8: Card Layout */
+        .card-container {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .flex-card {
+            flex: 1 1 300px;
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .flex-card h4 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Example 9: Centering */
+        .center-demo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 200px;
+            background: #f1f5f9;
+            border-radius: 8px;
+        }
+
+        .centered-box {
+            background: var(--secondary-color);
+            color: white;
+            padding: 2rem;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <header class="example-header">
+        <div class="container">
+            <a href="../index.html" class="back-link">← Back to Home</a>
+            <h1>Flexbox Layout Examples</h1>
+            <p>One-dimensional layout model for flexible and responsive designs</p>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            
+            <!-- Example 1: Basic Row -->
+            <section class="demo-section">
+                <h3>1. Basic Flexbox Row</h3>
+                <p>Items arranged in a horizontal row (default behavior)</p>
+                <div class="flex-demo">
+                    <div class="flex-container flex-row">
+                        <div class="flex-item">Item 1</div>
+                        <div class="flex-item">Item 2</div>
+                        <div class="flex-item">Item 3</div>
+                    </div>
+                </div>
+                <div class="code-block">
+.flex-container {
+    display: flex;
+    flex-direction: row; /* default */
+}
+                </div>
+            </section>
+
+            <!-- Example 2: Column Direction -->
+            <section class="demo-section">
+                <h3>2. Flexbox Column</h3>
+                <p>Items stacked vertically in a column</p>
+                <div class="flex-demo">
+                    <div class="flex-container flex-column">
+                        <div class="flex-item">Item 1</div>
+                        <div class="flex-item">Item 2</div>
+                        <div class="flex-item">Item 3</div>
+                    </div>
+                </div>
+                <div class="code-block">
+.flex-container {
+    display: flex;
+    flex-direction: column;
+}
+                </div>
+            </section>
+
+            <!-- Example 3: Justify Content -->
+            <section class="demo-section">
+                <h3>3. Justify Content (Main Axis Alignment)</h3>
+                
+                <h4>flex-start</h4>
+                <div class="flex-demo">
+                    <div class="flex-container justify-start">
+                        <div class="flex-item">A</div>
+                        <div class="flex-item">B</div>
+                        <div class="flex-item">C</div>
+                    </div>
+                </div>
+
+                <h4>center</h4>
+                <div class="flex-demo">
+                    <div class="flex-container justify-center">
+                        <div class="flex-item">A</div>
+                        <div class="flex-item">B</div>
+                        <div class="flex-item">C</div>
+                    </div>
+                </div>
+
+                <h4>space-between</h4>
+                <div class="flex-demo">
+                    <div class="flex-container justify-between">
+                        <div class="flex-item">A</div>
+                        <div class="flex-item">B</div>
+                        <div class="flex-item">C</div>
+                    </div>
+                </div>
+
+                <h4>space-around</h4>
+                <div class="flex-demo">
+                    <div class="flex-container justify-around">
+                        <div class="flex-item">A</div>
+                        <div class="flex-item">B</div>
+                        <div class="flex-item">C</div>
+                    </div>
+                </div>
+
+                <div class="code-block">
+justify-content: flex-start | center | flex-end | 
+                 space-between | space-around | space-evenly;
+                </div>
+            </section>
+
+            <!-- Example 4: Align Items -->
+            <section class="demo-section">
+                <h3>4. Align Items (Cross Axis Alignment)</h3>
+                
+                <h4>center</h4>
+                <div class="flex-demo">
+                    <div class="flex-container align-center">
+                        <div class="flex-item flex-item-tall">Tall</div>
+                        <div class="flex-item flex-item-short">Short</div>
+                        <div class="flex-item">Normal</div>
+                    </div>
+                </div>
+
+                <h4>flex-start</h4>
+                <div class="flex-demo">
+                    <div class="flex-container align-start">
+                        <div class="flex-item flex-item-tall">Tall</div>
+                        <div class="flex-item flex-item-short">Short</div>
+                        <div class="flex-item">Normal</div>
+                    </div>
+                </div>
+
+                <div class="code-block">
+align-items: stretch | center | flex-start | flex-end | baseline;
+                </div>
+            </section>
+
+            <!-- Example 5: Flex Grow -->
+            <section class="demo-section">
+                <h3>5. Flex Grow</h3>
+                <p>Control how items grow to fill available space</p>
+                <div class="flex-demo">
+                    <div class="flex-container">
+                        <div class="flex-item flex-grow-1">flex-grow: 1</div>
+                        <div class="flex-item flex-grow-2">flex-grow: 2</div>
+                        <div class="flex-item flex-grow-1">flex-grow: 1</div>
+                    </div>
+                </div>
+                <div class="code-block">
+.item-1 { flex-grow: 1; }
+.item-2 { flex-grow: 2; } /* Takes twice as much space */
+                </div>
+            </section>
+
+            <!-- Example 6: Flex Wrap -->
+            <section class="demo-section">
+                <h3>6. Flex Wrap</h3>
+                <p>Allow items to wrap to new lines</p>
+                <div class="flex-demo">
+                    <div class="flex-container flex-wrap">
+                        <div class="flex-item">Item 1</div>
+                        <div class="flex-item">Item 2</div>
+                        <div class="flex-item">Item 3</div>
+                        <div class="flex-item">Item 4</div>
+                        <div class="flex-item">Item 5</div>
+                        <div class="flex-item">Item 6</div>
+                    </div>
+                </div>
+                <div class="code-block">
+.flex-container {
+    flex-wrap: wrap;
+}
+                </div>
+            </section>
+
+            <!-- Example 7: Practical - Navbar -->
+            <section class="demo-section">
+                <h3>7. Practical Example: Navigation Bar</h3>
+                <div class="flex-demo">
+                    <nav class="navbar">
+                        <div class="navbar-brand">MyWebsite</div>
+                        <ul class="navbar-menu">
+                            <li><a href="#home">Home</a></li>
+                            <li><a href="#about">About</a></li>
+                            <li><a href="#services">Services</a></li>
+                            <li><a href="#contact">Contact</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="code-block">
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar-menu {
+    display: flex;
+    gap: 1.5rem;
+}
+                </div>
+            </section>
+
+            <!-- Example 8: Practical - Card Layout -->
+            <section class="demo-section">
+                <h3>8. Practical Example: Responsive Card Layout</h3>
+                <div class="flex-demo">
+                    <div class="card-container">
+                        <div class="flex-card">
+                            <h4>Feature 1</h4>
+                            <p>Flexbox makes creating responsive layouts easy and intuitive.</p>
+                        </div>
+                        <div class="flex-card">
+                            <h4>Feature 2</h4>
+                            <p>Cards automatically adjust to available space with flex properties.</p>
+                        </div>
+                        <div class="flex-card">
+                            <h4>Feature 3</h4>
+                            <p>No complex calculations needed for equal-width columns.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="code-block">
+.card-container {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.flex-card {
+    flex: 1 1 300px; /* grow, shrink, basis */
+}
+                </div>
+            </section>
+
+            <!-- Example 9: Perfect Centering -->
+            <section class="demo-section">
+                <h3>9. Perfect Centering</h3>
+                <p>The easiest way to center content both horizontally and vertically</p>
+                <div class="center-demo">
+                    <div class="centered-box">
+                        <h4>Perfectly Centered!</h4>
+                        <p>Both horizontally and vertically</p>
+                    </div>
+                </div>
+                <div class="code-block">
+.center-demo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 200px;
+}
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2025 Web Layout Investigation Project</p>
+        </div>
+    </footer>
+</body>
+</html>

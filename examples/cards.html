@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Card Layout Examples</title>
+    <link rel="stylesheet" href="../styles/main.css">
+    <style>
+        /* Card Layout Styles */
+        
+        /* Example 1: Basic Card Grid */
+        .basic-card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-image {
+            width: 100%;
+            aspect-ratio: 16/10;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+
+        .card-content {
+            padding: 1.5rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-title {
+            color: var(--primary-color);
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-description {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            flex: 1;
+        }
+
+        .card-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #059669;
+            margin-bottom: 1rem;
+        }
+
+        .card-button {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+
+        .card-button:hover {
+            background: var(--primary-dark);
+        }
+
+        /* Example 2: Feature Cards */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .feature-card:hover {
+            border-color: var(--primary-color);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-title {
+            color: var(--primary-color);
+            font-size: 1.25rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .feature-description {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Example 3: Team Cards */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2rem;
+        }
+
+        .team-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .team-avatar {
+            width: 100%;
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 4rem;
+            font-weight: 700;
+        }
+
+        .team-info {
+            padding: 1.5rem;
+        }
+
+        .team-name {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.25rem;
+        }
+
+        .team-role {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .team-social {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .social-link {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: background 0.2s ease;
+        }
+
+        .social-link:hover {
+            background: var(--primary-dark);
+        }
+
+        /* Example 4: Masonry-style Layout */
+        .masonry-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            grid-auto-rows: 20px;
+        }
+
+        .masonry-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .masonry-card h4 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .masonry-small { grid-row: span 8; }
+        .masonry-medium { grid-row: span 12; }
+        .masonry-large { grid-row: span 16; }
+
+        /* Example 5: Card with Stats */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 640px) {
+            .basic-card-grid,
+            .feature-grid,
+            .team-grid,
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="example-header">
+        <div class="container">
+            <a href="../index.html" class="back-link">← Back to Home</a>
+            <h1>Card Layout Examples</h1>
+            <p>Modern card-based designs with CSS Grid and Flexbox</p>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            
+            <!-- Example 1: Product Cards -->
+            <section class="demo-section">
+                <h3>1. Product Card Grid</h3>
+                <p>Responsive product cards with hover effects</p>
+                <div class="basic-card-grid">
+                    <div class="product-card">
+                        <div class="card-image">📱</div>
+                        <div class="card-content">
+                            <h4 class="card-title">Smartphone Pro</h4>
+                            <p class="card-description">
+                                Latest technology with amazing features and performance.
+                            </p>
+                            <div class="card-price">$999</div>
+                            <button class="card-button">Add to Cart</button>
+                        </div>
+                    </div>
+                    
+                    <div class="product-card">
+                        <div class="card-image">💻</div>
+                        <div class="card-content">
+                            <h4 class="card-title">Laptop Ultra</h4>
+                            <p class="card-description">
+                                Powerful laptop for professionals and creators.
+                            </p>
+                            <div class="card-price">$1,499</div>
+                            <button class="card-button">Add to Cart</button>
+                        </div>
+                    </div>
+                    
+                    <div class="product-card">
+                        <div class="card-image">🎧</div>
+                        <div class="card-content">
+                            <h4 class="card-title">Wireless Headphones</h4>
+                            <p class="card-description">
+                                Premium sound quality with active noise cancellation.
+                            </p>
+                            <div class="card-price">$299</div>
+                            <button class="card-button">Add to Cart</button>
+                        </div>
+                    </div>
+                    
+                    <div class="product-card">
+                        <div class="card-image">⌚</div>
+                        <div class="card-content">
+                            <h4 class="card-title">Smart Watch</h4>
+                            <p class="card-description">
+                                Track your fitness and stay connected on the go.
+                            </p>
+                            <div class="card-price">$399</div>
+                            <button class="card-button">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="code-block">
+.basic-card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+.product-card {
+    display: flex;
+    flex-direction: column;
+}
+
+.product-card:hover {
+    transform: translateY(-8px);
+}
+                </div>
+            </section>
+
+            <!-- Example 2: Feature Cards -->
+            <section class="demo-section">
+                <h3>2. Feature Cards</h3>
+                <p>Highlight key features or services</p>
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">🚀</div>
+                        <h4 class="feature-title">Fast Performance</h4>
+                        <p class="feature-description">
+                            Lightning-fast load times and smooth interactions for the best user experience.
+                        </p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">🔒</div>
+                        <h4 class="feature-title">Secure</h4>
+                        <p class="feature-description">
+                            Enterprise-grade security to protect your data and privacy at all times.
+                        </p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">📱</div>
+                        <h4 class="feature-title">Responsive</h4>
+                        <p class="feature-description">
+                            Works perfectly on all devices, from smartphones to desktop computers.
+                        </p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">🎨</div>
+                        <h4 class="feature-title">Beautiful Design</h4>
+                        <p class="feature-description">
+                            Modern and clean interface that users love to interact with daily.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="code-block">
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.feature-card:hover {
+    border-color: var(--primary-color);
+}
+                </div>
+            </section>
+
+            <!-- Example 3: Team Cards -->
+            <section class="demo-section">
+                <h3>3. Team Member Cards</h3>
+                <p>Showcase your team with profile cards</p>
+                <div class="team-grid">
+                    <div class="team-card">
+                        <div class="team-avatar">JD</div>
+                        <div class="team-info">
+                            <h4 class="team-name">Jane Doe</h4>
+                            <p class="team-role">CEO & Founder</p>
+                            <div class="team-social">
+                                <a href="#" class="social-link">in</a>
+                                <a href="#" class="social-link">tw</a>
+                                <a href="#" class="social-link">gh</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="team-card">
+                        <div class="team-avatar">JS</div>
+                        <div class="team-info">
+                            <h4 class="team-name">John Smith</h4>
+                            <p class="team-role">Lead Developer</p>
+                            <div class="team-social">
+                                <a href="#" class="social-link">in</a>
+                                <a href="#" class="social-link">tw</a>
+                                <a href="#" class="social-link">gh</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="team-card">
+                        <div class="team-avatar">EB</div>
+                        <div class="team-info">
+                            <h4 class="team-name">Emily Brown</h4>
+                            <p class="team-role">UX Designer</p>
+                            <div class="team-social">
+                                <a href="#" class="social-link">in</a>
+                                <a href="#" class="social-link">tw</a>
+                                <a href="#" class="social-link">gh</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="team-card">
+                        <div class="team-avatar">MJ</div>
+                        <div class="team-info">
+                            <h4 class="team-name">Mike Johnson</h4>
+                            <p class="team-role">Marketing Director</p>
+                            <div class="team-social">
+                                <a href="#" class="social-link">in</a>
+                                <a href="#" class="social-link">tw</a>
+                                <a href="#" class="social-link">gh</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="code-block">
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 2rem;
+}
+                </div>
+            </section>
+
+            <!-- Example 4: Masonry-style -->
+            <section class="demo-section">
+                <h3>4. Masonry-style Card Layout</h3>
+                <p>Cards with varying heights create a Pinterest-like layout</p>
+                <div class="masonry-grid">
+                    <div class="masonry-card masonry-small">
+                        <h4>Short Card</h4>
+                        <p>This card has minimal content.</p>
+                    </div>
+                    
+                    <div class="masonry-card masonry-medium">
+                        <h4>Medium Card</h4>
+                        <p>This card has a bit more content to display, making it slightly taller than the short card.</p>
+                    </div>
+                    
+                    <div class="masonry-card masonry-large">
+                        <h4>Large Card</h4>
+                        <p>This card contains more detailed information and takes up more vertical space. It's perfect for showcasing content that requires more explanation or detail.</p>
+                    </div>
+                    
+                    <div class="masonry-card masonry-small">
+                        <h4>Another Short</h4>
+                        <p>Brief content here.</p>
+                    </div>
+                    
+                    <div class="masonry-card masonry-medium">
+                        <h4>Another Medium</h4>
+                        <p>Medium amount of content to create visual interest in the layout.</p>
+                    </div>
+                    
+                    <div class="masonry-card masonry-small">
+                        <h4>Quick Note</h4>
+                        <p>Compact card.</p>
+                    </div>
+                </div>
+                
+                <div class="code-block">
+.masonry-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-auto-rows: 20px;
+    gap: 1rem;
+}
+
+.masonry-small { grid-row: span 8; }
+.masonry-medium { grid-row: span 12; }
+.masonry-large { grid-row: span 16; }
+                </div>
+            </section>
+
+            <!-- Example 5: Stats Cards -->
+            <section class="demo-section">
+                <h3>5. Statistics Cards</h3>
+                <p>Display key metrics and numbers</p>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number">10K+</div>
+                        <div class="stat-label">Active Users</div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-number">99.9%</div>
+                        <div class="stat-label">Uptime</div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-number">24/7</div>
+                        <div class="stat-label">Support</div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-number">150+</div>
+                        <div class="stat-label">Countries</div>
+                    </div>
+                </div>
+                
+                <div class="code-block">
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+}
+
+.stat-card {
+    background: linear-gradient(135deg, #2563eb 0%, #8b5cf6 100%);
+}
+                </div>
+            </section>
+
+            <!-- Best Practices -->
+            <section class="demo-section">
+                <h3>Card Layout Best Practices</h3>
+                <div style="background: #dbeafe; border-left: 4px solid var(--primary-color); padding: 1rem; margin: 1rem 0; border-radius: 4px;">
+                    <h4>Key Principles:</h4>
+                    <ul>
+                        <li><strong>Consistency:</strong> Keep card sizes and spacing consistent</li>
+                        <li><strong>Hierarchy:</strong> Use clear visual hierarchy within cards</li>
+                        <li><strong>Whitespace:</strong> Don't overcrowd cards with information</li>
+                        <li><strong>Actions:</strong> Make buttons and links easily clickable</li>
+                        <li><strong>Hover Effects:</strong> Provide visual feedback on interaction</li>
+                        <li><strong>Responsive:</strong> Ensure cards work well on all screen sizes</li>
+                        <li><strong>Equal Heights:</strong> Use CSS Grid or Flexbox for equal-height cards</li>
+                        <li><strong>Loading States:</strong> Show placeholders while content loads</li>
+                    </ul>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2025 Web Layout Investigation Project</p>
+        </div>
+    </footer>
+</body>
+</html>
